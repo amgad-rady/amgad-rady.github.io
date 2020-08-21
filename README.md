@@ -22,7 +22,7 @@ This pull request is related to issue javapathfinder/jpf-core#248. This fixed an
 
 * javapathfinder/jpf-core#255
 
-* javapathfinder/jpf-core#255
+* javapathfinder/jpf-core#258
 
 ## Local Branches and Ancillary Code
 
