@@ -6,11 +6,13 @@ A crucial feature of Java 11 that needs to be urgently implemented is support fo
 
 ## Pull Requests
 
-### Pull Request javapathfinder/jpf-core#230
+### Pull Request [#230](https://github.com/javapathfinder/jpf-core/pull/230)
 
 Java PathFinder (JPF) is an open source model checker for the Java programming language. JPF automatically checks Java bytecode for subtle bugs due to randomization and concurrency that are typically missed by conventional testing techniques.
 
-This is related to issue javapathfinder/jpf-core#229. The code now properly uses the bootstrap method ```makeConcatWithConstants``` to concatenate strings. This change fixed errors present in the original code not covered by existing tests, like an error where a string concatenation with more than three variables (e.g. ```a + b + c``` for three variables ```a```, ```b```, and ```c```) would fail. There remain limitations to this approach, as the representations of object in the JVM and JPF virtual machine are different, hence using a ```makeConcatWithConstants``` callsite with an identical type signature as the one the JVM constructs is not possible. There is also a remaining issue with JPF calling the ```toString``` method during string concatenation, as the JVM does (note: add a reference here).
+This is related to issue [#229.](https://github.com/javapathfinder/jpf-core/pull/237) This change fixed errors present in the original code not covered by existing tests, like an error where a string concatenation with more than three variables (e.g. ```a + b + c``` for three variables ```a```, ```b```, and ```c```) would fail. There were likely other errors not explicitly exposed as string concatenation previously used an error-prone *ad hoc* approach.
+
+String concatenation in JPF has been rewritten to emulate the string concatenation using bootstrap methods that is used by the Java virtual machine. The method ```makeConcatWithConstants``` in the library ```StringConcatFactory``` (link [here](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/StringConcatFactory.html)) is invoked in the JVM using reflection, with the arguments drawn from the [Model Java Interface](https://github.com/javapathfinder/jpf-core/wiki/Model-Java-Interface) environment. Although it might seem as though this must be done in JPF rather than the host JVM, ```makeConcatWithConstants``` is a pure function, hence calling it in the host JVM is valid since it will not change the state of the system under test. 
 
 ### Pull Request [#237](https://github.com/javapathfinder/jpf-core/pull/237)
 
