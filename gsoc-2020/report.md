@@ -24,7 +24,7 @@ This pull request is related to issue [#236.](https://github.com/javapathfinder/
 
 ### Pull Request [#254](https://github.com/javapathfinder/jpf-core/pull/254)
 
-This pull request is related to issue [#248](https://github.com/javapathfinder/jpf-core/issues/248). This fixed an error with the method dispatch semantics in JPF as described in the issue.
+This pull request is related to issue [#248](https://github.com/javapathfinder/jpf-core/issues/248). This fixed an error with the method dispatch semantics in JPF as described in the issue. The error was due to the JPF virtual machine not adhering to the dynamic method lookup algorithm described in section [15.12.4.4](https://docs.oracle.com/javase/specs/jls/se11/html/jls-15.html#jls-15.12.4.4) of the Java Language Specification 11. Specifically, JPF did not correctly invoke ```private``` methods.
 
 ## Outstanding Issues
 
