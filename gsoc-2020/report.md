@@ -16,7 +16,7 @@ String concatenation in JPF has been rewritten to emulate the string concatenati
 
 ### Pull Request [#237](https://github.com/javapathfinder/jpf-core/pull/237)
 
-This pull request is related to issue [#236.](https://github.com/javapathfinder/jpf-core/issues/236) This pull request fixed a subtle bug where the JPF operand stack semantics did not follow the JVM semantics whereby a value of type ```Long``` or ```Double``` is pushed to and popped from the stack as two words. Fixing this bug made roughly 30 of 50 failing tests pass, as the bug had far-reaching implications. Fixing this bug showed that the bootstrap method handling for lambda expressions is correct, at least for lambda expressions that use the ```LambdaMetafactory.metafactory```.
+This pull request is related to issue [#236.](https://github.com/javapathfinder/jpf-core/issues/236) This pull request fixed a subtle bug where the JPF operand stack semantics did not follow the JVM semantics whereby a value of type ```Long``` or ```Double``` is pushed to and popped from the stack as two words. Fixing this bug made roughly 30 of 50 failing tests pass, as the bug had far-reaching implications. Fixing this bug also showed that the bootstrap method handling for lambda expressions is correct, at least for lambda expressions that use the ```LambdaMetafactory.metafactory```.
 
 ### Pull Request [#254](https://github.com/javapathfinder/jpf-core/pull/254)
 
