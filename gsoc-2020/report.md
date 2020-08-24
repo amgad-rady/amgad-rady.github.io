@@ -1,3 +1,5 @@
+#[Google Summer of Code 2020 Project](https://summerofcode.withgoogle.com/projects/#5145188302848000)
+
 # Support Java 11/12 for jpf-core
 
 [Java PathFinder](https://github.com/javapathfinder) (JPF) is an open source model checker for the Java programming language. At the core of JPF is a Java virtual machine that branches on non-deterministic points in the bytecode and searches the generated state space for erroneous exection. Through this branching, JPF checks Java bytecode for subtle bugs due to randomization and concurrency, like data races and deadlocks, which are typically missed by conventional testing techniques.
