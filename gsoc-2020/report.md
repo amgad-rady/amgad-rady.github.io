@@ -1,6 +1,6 @@
 # Support Java 11/12 for jpf-core
 
-Java PathFinder (JPF) is an open source model checker for the Java programming language. JPF automatically checks Java bytecode for subtle bugs due to randomization and concurrency that are typically missed by conventional testing techniques.
+[Java PathFinder](https://github.com/javapathfinder) (JPF) is an open source model checker for the Java programming language. At the core of JPF is a Java virtual machine that branches on non-deterministic points in the bytecode and searches the generated state space for erroneous exection. Through this branching, JPF checks Java bytecode for subtle bugs due to randomization and concurrency, like data races and deadlocks, which are typically missed by conventional testing techniques.
 
 JPF does not yet fully implement the features of Java 11 - support extends only to Java 8 - including features as simple as string concatenation. This is an especially difficult situation given that Oracle has initiated an “end of public updates process” for Java 8 (although it is interesting to note that Oracle will continue “premier support” for Java 8). It is likely that many Java users will migrate to higher versions, and unless JPF fully supports the new features of a higher version of Java it is unlikely to be used and adopted.
 
@@ -10,7 +10,7 @@ A crucial feature of Java 11 that needs to be urgently implemented is support fo
 
 ### Pull Request [#230](https://github.com/javapathfinder/jpf-core/pull/230)
 
-This is related to issue [#229.](https://github.com/javapathfinder/jpf-core/pull/237) This change fixed errors present in the original code not covered by existing tests, like an error where a string concatenation with more than three variables (e.g. ```a + b + c``` for three variables ```a```, ```b```, and ```c```) would fail. There were likely other errors not explicitly exposed as string concatenation previously used an error-prone *ad hoc* approach.
+This is related to issue [#229.](https://github.com/javapathfinder/jpf-core/issues/229) This change fixed errors present in the original code not covered by existing tests, like an error where a string concatenation with more than three variables (e.g. ```a + b + c``` for three variables ```a```, ```b```, and ```c```) would fail. There were likely other errors not explicitly exposed as string concatenation previously used an error-prone *ad hoc* approach.
 
 String concatenation in JPF has been rewritten to emulate the string concatenation using bootstrap methods that is used by the Java virtual machine. The method ```makeConcatWithConstants``` in the library ```StringConcatFactory``` (link [here](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/invoke/StringConcatFactory.html)) is invoked in the JVM using reflection, with the arguments drawn from the [Model Java Interface](https://github.com/javapathfinder/jpf-core/wiki/Model-Java-Interface) environment. Although it might seem as though this must be done in JPF rather than the host JVM, ```makeConcatWithConstants``` is a pure function, hence calling it in the host JVM is valid since it will not change the state of the system under test. 
 
