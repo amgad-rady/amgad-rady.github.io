@@ -1,4 +1,6 @@
-# [Google Summer of Code 2020 Project](https://summerofcode.withgoogle.com/projects/#5145188302848000)
+# Google Summer of Code 2020 Project
+
+This page is the final report for the Google Summer of Code 2020 Project described [here.](https://summerofcode.withgoogle.com/projects/#5145188302848000)
 
 # Support Java 11/12 for jpf-core
 
